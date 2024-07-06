@@ -4,25 +4,25 @@ import Question from "./Question";
 import Summary from "./Summary";
 
 export default function Quiz() {
-  const [userAnswer, setUserAnswer] = useState([]);
+  const [userAnswers, setUserAnswers] = useState([]);
 
-  const activeQuestionIndex = userAnswer.length;
+  const activeQuestionIndex = userAnswers.length;
 
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
   const handleSelectAnswer = useCallback(
     function handleSelectAnswer(selectedAnswer) {
-      setUserAnswer((prevAnswer) => {
+      setUserAnswers((prevAnswer) => {
         return [...prevAnswer, selectedAnswer];
       });
-    },[])
+    },[]);
   const handleSkipAnswer = useCallback(
     () => handleSelectAnswer(null),
     [handleSelectAnswer]
   );
 
   if (quizIsComplete) {
-    return <Summary userAnswers={userAnswer} />
+    return <Summary userAnswers={userAnswers} />
   }
 
   return (
